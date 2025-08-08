@@ -55,15 +55,19 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-/* Dark mode toggle */
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    // Change icon based on mode
-    if (document.body.classList.contains('dark-mode')) {
-        darkModeToggle.textContent = '☀️';
-    } else {
-        darkModeToggle.textContent = '🌙';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            // Change icon based on mode
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeToggle.textContent = '☀️';
+            } else {
+                darkModeToggle.textContent = '🌙';
+            }
+        });
     }
 });
 
