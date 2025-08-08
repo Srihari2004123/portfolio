@@ -5,6 +5,15 @@
     --dark: #1e293b;   /* Deep Navy */
     --light: #f8fafc;      /* Off White */
     --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    
+    /* Dark mode colors */
+    --background-light: #f8fafc;
+    --background-dark: #121212;
+    --card-background-dark: #1e1e1e;
+    --text-light: #f8fafc;
+    --text-dark: #1e293b;
+    --text-secondary: #e0e0e0;
+    --border-dark: #333;
 }
 /* General Styles */
 body {
@@ -12,8 +21,16 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-light);
 }
 body::before {
     content: '';
@@ -48,12 +65,14 @@ body::before {
     backdrop-filter: blur(12px);
     box-shadow: 0 4px 30px rgba(252, 251, 251, 0.1);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar-brand {
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 
@@ -66,6 +85,21 @@ body::before {
 .nav-links a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Dark mode navigation */
+body.dark-mode .navbar {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-mode .navbar-brand {
+    color: var(--text-light);
+}
+
+body.dark-mode .nav-links a {
+    color: var(--text-light);
 }
 
 /* Hero Section */
@@ -75,6 +109,8 @@ body::before {
     /* Removed overflow hidden to prevent clipping of modals */
     /* overflow: hidden; */
     text-align: center;
+    background-color: var(--background-light);
+    transition: background-color 0.3s ease;
 }
 
 .profile-img {
@@ -84,6 +120,8 @@ body::before {
     object-fit: cover;
     object-position: center center;
     overflow: hidden;
+    border: 5px solid white;
+    transition: border-color 0.3s ease;
 }
 
 .hero-flex-container {
@@ -104,23 +142,62 @@ body::before {
 .hero-text-container h1 {
     margin: 0;
     font-size: 3rem;
+    color: var(--text-dark);
+    transition: color 0.3s ease;
 }
 
 .hero-text-container p {
     font-size: 1.5rem;
     margin-top: 10px;
     color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+/* Dark mode hero section */
+body.dark-mode .hero {
+    background-color: var(--background-dark);
+}
+
+body.dark-mode .hero-text-container h1 {
+    color: var(--text-light);
+}
+
+body.dark-mode .hero-text-container p {
+    color: var(--accent);
+}
+
+body.dark-mode .profile-img {
+    border: 5px solid var(--card-background-dark);
 }
 
 
 /* Sections */
 .section {
     padding: 80px 0;
+    background-color: var(--background-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 #Objective {
     background-color: #f4f4f4;
     padding: 80px 0;
 }
+
+/* Dark mode sections */
+body.dark-mode .section {
+    background-color: var(--background-dark);
+}
+
+body.dark-mode #Objective {
+    background-color: #2a2a2a;
+}
+
+/* Override Bootstrap bg-light in dark mode for skills and internship */
+body.dark-mode #skills.bg-light,
+body.dark-mode #internship.bg-light {
+    background-color: var(--background-dark) !important;
+}
+
 /* Projects Section */
 #projects {
     padding: 80px 0;
@@ -137,7 +214,7 @@ body::before {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
@@ -148,11 +225,13 @@ body::before {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #2c3e50;
+    transition: color 0.3s ease;
 }
 
 .project-card p {
     color: #555;
     margin-bottom: 15px;
+    transition: color 0.3s ease;
 }
 
 .btn-explore {
@@ -167,6 +246,38 @@ body::before {
 
 .btn-explore:hover {
     background-color: #2980b9;
+}
+
+/* Dark mode cards */
+body.dark-mode .project-card,
+body.dark-mode .education-card,
+body.dark-mode .skill-category,
+body.dark-mode .internship-card,
+body.dark-mode .achievement-card {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+    color: var(--text-light);
+}
+
+body.dark-mode .project-card h3,
+body.dark-mode .education-card h3,
+body.dark-mode .skill-category h3,
+body.dark-mode .internship-card h3,
+body.dark-mode .achievement-card h3 {
+    color: var(--text-light);
+}
+
+body.dark-mode .project-card p,
+body.dark-mode .education-card .institution,
+body.dark-mode .education-card .duration,
+body.dark-mode .internship-card p,
+body.dark-mode .achievement-card p {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .btn-explore {
+    background-color: #2563eb;
+    color: var(--text-light);
 }
 .btn-gitlab {
     background-color: #fc6d26;
@@ -198,6 +309,7 @@ body::before {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
 .modal-content {
@@ -207,6 +319,7 @@ body::before {
     width: 90%;
     max-width: 800px;
     position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .modal-image {
@@ -224,10 +337,29 @@ body::before {
     font-size: 1.5rem;
     cursor: pointer;
     color: #555;
+    transition: color 0.3s ease;
 }
 
 .close:hover {
     color: #000;
+}
+
+/* Dark mode modals */
+body.dark-mode .modal {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark-mode .modal-content {
+    background: var(--card-background-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .close {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .close:hover {
+    color: var(--text-light);
 }
 .social-links .btn {
     display: inline-flex;
@@ -236,58 +368,78 @@ body::before {
     padding: 0.5rem 1rem;
     text-decoration: none;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* LinkedIn Button */
 .social-links .btn-linkedin {
-    
-    color: #0077b5; /* White text for better contrast */
+    color: #0077b5;
+    background-color: rgba(0, 119, 181, 0.1);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark mode colors */
-:root {
-    --background-light: #f8fafc;
-    --background-dark: #1e293b;
-    --text-light: #1e293b;
-    --text-dark: #f8fafc;
+.social-links .btn-linkedin:hover {
+    background-color: #0077b5;
+    color: white;
 }
 
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #121212;
+/* GitHub Button */
+.social-links .btn-github {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-links .btn-github:hover {
+    background-color: #000000;
+    color: white;
+}
+
+/* GitLab Button */
+.social-links .btn-gitlab {
+    color: #fc6d26;
+    background-color: rgba(252, 109, 38, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-links .btn-gitlab:hover {
+    background-color: #fc6d26;
+    color: white;
+}
+
+.social-links .btn i {
+    font-size: 1.2rem;
+}
+
+/* Dark mode buttons */
+body.dark-mode .social-links .btn-linkedin {
+    color: #64b5f6;
+    background-color: rgba(100, 181, 246, 0.1);
+}
+
+body.dark-mode .social-links .btn-linkedin:hover {
+    background-color: #64b5f6;
+    color: #121212;
+}
+
+body.dark-mode .social-links .btn-github {
     color: #e0e0e0;
+    background-color: rgba(224, 224, 224, 0.1);
 }
 
-body.dark-mode .navbar {
-    background-color: #1f1f1f;
-    border-bottom: 1px solid #444;
+body.dark-mode .social-links .btn-github:hover {
+    background-color: #e0e0e0;
+    color: #121212;
 }
 
-body.dark-mode .nav-links a {
-    color: #e0e0e0;
+body.dark-mode .social-links .btn-gitlab {
+    color: #ff8c66;
+    background-color: rgba(255, 140, 102, 0.1);
 }
 
-body.dark-mode .section {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-}
-
-body.dark-mode .project-card,
-body.dark-mode .education-card,
-body.dark-mode .skill-category,
-body.dark-mode .internship-card,
-body.dark-mode .achievement-card,
-body.dark-mode .copyright-card {
-    background-color: #242424;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-    color: #e0e0e0;
-}
-
-body.dark-mode .btn-explore,
-body.dark-mode .btn {
-    background-color: #2563eb;
-    color: #f8fafc;
+body.dark-mode .social-links .btn-gitlab:hover {
+    background-color: #ff8c66;
+    color: #121212;
 }
 
 /* Scroll Progress Bar */
@@ -317,15 +469,13 @@ body.dark-mode .btn {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     z-index: 10000;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #dark-mode-toggle:hover {
     background-color: var(--secondary);
+    transform: scale(1.1);
 }
-
-/* Chatbot Widget */
-/* Removed chatbot widget styles as per user request */
 
 /* Back to Top Button */
 #back-to-top {
@@ -343,11 +493,12 @@ body.dark-mode .btn {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     z-index: 10000;
     display: none; /* Hidden by default */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
 }
 
 #back-to-top:hover {
     background-color: var(--secondary);
+    transform: scale(1.1);
 }
 
 /* Fade-in animation for sections */
@@ -361,20 +512,8 @@ body.dark-mode .btn {
     opacity: 1;
     transform: translateY(0);
 }
-
-
-
-/* GitHub Button */
-.social-links .btn-github {
-    
-    color: #000000; /* White text for better contrast */
-}
-
-.social-links .btn i {
-    font-size: 1.2rem;
-}
 /* Education Section */
-#education {
+#Education {
     background-color: #f9f9f9;
     padding: 80px 0;
 }
@@ -390,7 +529,7 @@ body.dark-mode .btn {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .education-card:hover {
@@ -401,12 +540,14 @@ body.dark-mode .btn {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #2c3e50;
+    transition: color 0.3s ease;
 }
 
 .education-card .institution {
     font-weight: bold;
     color: #3498db;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .education-card .university,
@@ -414,11 +555,18 @@ body.dark-mode .btn {
     font-style: italic;
     color: #555;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 .education-card .duration {
     font-size: 0.9rem;
     color: #777;
+    transition: color 0.3s ease;
+}
+
+/* Dark mode education section */
+body.dark-mode #Education {
+    background-color: #2a2a2a;
 }
 /* Skills Section */
 #skills {
@@ -436,7 +584,7 @@ body.dark-mode .btn {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-category:hover {
@@ -449,6 +597,7 @@ body.dark-mode .btn {
     font-size: 1.2rem;
     border-bottom: 2px solid #3498db;
     padding-bottom: 8px;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .skill-items {
@@ -458,12 +607,33 @@ body.dark-mode .btn {
 }
 
 .skill-badge {
-    
     color: rgb(0, 0, 0);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.9rem;
     display: inline-block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode skills section */
+body.dark-mode #skills {
+    background-color: var(--background-dark);
+}
+
+body.dark-mode .skill-category {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+}
+
+body.dark-mode .skill-category h3 {
+    color: var(--text-light);
+    border-bottom: 2px solid var(--accent);
+}
+
+body.dark-mode .skill-badge {
+    color: var(--text-light);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 /* Skill Icons */
 .skill-category h3 i {
@@ -532,7 +702,7 @@ body.dark-mode .btn {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .internship-card:hover {
@@ -543,11 +713,18 @@ body.dark-mode .btn {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #2c3e50;
+    transition: color 0.3s ease;
 }
 
 .internship-card p {
     color: #555;
     margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+/* Dark mode internship section */
+body.dark-mode #internship {
+    background-color: #2a2a2a;
 }
 /* Achievements Section */
 #achievements {
@@ -566,7 +743,7 @@ body.dark-mode .btn {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
 }
 
@@ -579,11 +756,13 @@ body.dark-mode .btn {
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #2c3e50;
+    transition: color 0.3s ease;
 }
 
 .achievement-card p {
     color: #555;
     margin-bottom: 15px;
+    transition: color 0.3s ease;
 }
 
 .achievement-details {
@@ -597,6 +776,7 @@ body.dark-mode .btn {
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 11000; /* Increased z-index to be above all other elements */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .achievement-card:hover .achievement-details {
@@ -615,6 +795,29 @@ body.dark-mode .btn {
     display: block;
     text-align: center;
     margin-top: 10px;
+}
+
+/* Dark mode achievements section */
+body.dark-mode #achievements {
+    background-color: var(--background-dark);
+}
+
+body.dark-mode .achievement-card {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+}
+
+body.dark-mode .achievement-card h3 {
+    color: var(--text-light);
+}
+
+body.dark-mode .achievement-card p {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .achievement-details {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 /* Achievement Images Grid */
 .achievement-images {
@@ -654,6 +857,7 @@ body.dark-mode .btn {
     position: relative;
     overflow: hidden;
     color: #4a4a4a;
+    transition: background-color 0.3s ease;
 }
 
 .contact-container {
@@ -673,6 +877,7 @@ body.dark-mode .btn {
     padding: 40px 50px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-form-container h2 {
@@ -683,35 +888,37 @@ body.dark-mode .btn {
     border-bottom: 4px solid #7c3aed;
     display: inline-block;
     padding-bottom: 10px;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-#contact-form {
+.contact-form {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-#contact-form input,
-#contact-form textarea {
+.form-input,
+.form-textarea {
     padding: 18px 25px;
     border-radius: 12px;
     border: 1px solid #ddd;
     font-size: 1.1rem;
     resize: none;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     background-color: #fafafa;
     color: #333;
     box-shadow: none;
 }
 
-#contact-form input::placeholder,
-#contact-form textarea::placeholder {
+.form-input::placeholder,
+.form-textarea::placeholder {
     color: #999;
+    transition: color 0.3s ease;
 }
 
-#contact-form input:focus,
-#contact-form textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
     border-color: #7c3aed;
     box-shadow: 0 0 8px rgba(124, 58, 173, 0.5);
 }
@@ -726,11 +933,19 @@ body.dark-mode .btn {
     font-weight: 700;
     cursor: pointer;
     align-self: flex-start;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, opacity 0.3s ease;
 }
 
 .btn-submit:hover {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
+    opacity: 0.9;
+}
+
+.form-result {
+    text-align: center;
+    margin-top: 10px;
+    color: #7c3aed;
+    transition: color 0.3s ease;
 }
 
 /* Animated structure side for contact me box */
@@ -763,6 +978,7 @@ body.dark-mode .btn {
     animation-iteration-count: infinite;
     animation-name: moveUpDown;
     animation-duration: 3s;
+    transition: background 0.3s ease;
 }
 
 /* Different animation delays for wave effect */
@@ -786,5 +1002,52 @@ body.dark-mode .btn {
     50% {
         transform: translateY(-30px);
     }
+}
+
+/* Dark mode contact section */
+body.dark-mode .contact-section {
+    background: #1a1a1a;
+    color: var(--text-light);
+}
+
+body.dark-mode .contact-form-container {
+    background: var(--card-background-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .contact-form-container h2 {
+    color: var(--text-light);
+    border-bottom: 4px solid var(--accent);
+}
+
+body.dark-mode .form-input,
+body.dark-mode .form-textarea {
+    background-color: #2a2a2a;
+    color: var(--text-light);
+    border: 1px solid #444;
+}
+
+body.dark-mode .form-input::placeholder,
+body.dark-mode .form-textarea::placeholder {
+    color: #aaa;
+}
+
+body.dark-mode .form-input:focus,
+body.dark-mode .form-textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+body.dark-mode .btn-submit {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+}
+
+body.dark-mode .form-result {
+    color: var(--accent);
+}
+
+body.dark-mode .circle {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
 }
 
