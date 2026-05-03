@@ -8,7 +8,13 @@ exploreButtons.forEach(button => {
     button.addEventListener('click', () => {
         const modalId = button.getAttribute('data-modal');
         const modal = document.getElementById(modalId);
-        modal.style.display = 'flex';
+        const modalContainer = document.getElementById('modal-container');
+        
+        // Hide all other modals
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        
+        if (modal) modal.classList.add('active');
+        if (modalContainer) modalContainer.classList.add('active');
     });
 });
 
@@ -16,14 +22,18 @@ exploreButtons.forEach(button => {
 closeButtons.forEach(button => {
     button.addEventListener('click', () => {
         const modal = button.closest('.modal');
-        modal.style.display = 'none';
+        const modalContainer = document.getElementById('modal-container');
+        if (modal) modal.classList.remove('active');
+        if (modalContainer) modalContainer.classList.remove('active');
     });
 });
 
 // Close modal when clicking outside
 window.addEventListener('click', (event) => {
-    if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
+    const modalContainer = document.getElementById('modal-container');
+    if (event.target === modalContainer || event.target.classList.contains('modal')) {
+        document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+        if (modalContainer) modalContainer.classList.remove('active');
     }
 });
 
@@ -39,33 +49,47 @@ document.querySelectorAll('.nav-links a').forEach(anchor => {
     });
 });
 
+/* Automatically add reveal class to cards and sections */
+document.querySelectorAll('.education-card, .project-card, .skill-category, .achievement-card, .internship-card, .section h2').forEach(el => {
+    el.classList.add('reveal');
+});
+
 /* Fade-in animation on scroll */
-const sections = document.querySelectorAll('.section');
+const revealElements = document.querySelectorAll('.reveal');
 const observerOptions = {
-    threshold: 0.1
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add('active');
         }
     });
 }, observerOptions);
-sections.forEach(section => {
-    observer.observe(section);
+
+revealElements.forEach(el => {
+    observer.observe(el);
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
+    // VanillaTilt Initialization for Glass Cards
+    VanillaTilt.init(document.querySelectorAll(".education-card, .project-card, .skill-category, .internship-card, .achievement-card"), {
+        max: 10,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+    });
+
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
             // Change icon based on mode
-            if (document.body.classList.contains('dark-mode')) {
-                darkModeToggle.textContent = '☀️';
-            } else {
+            if (document.body.classList.contains('light-mode')) {
                 darkModeToggle.textContent = '🌙';
+            } else {
+                darkModeToggle.textContent = '☀️';
             }
         });
     }
@@ -73,84 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Scroll progress bar */
 const scrollProgress = document.getElementById('scroll-progress');
+const backToTop = document.getElementById('back-to-top');
+
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
-    scrollProgress.style.width = scrollPercent + '%';
+    if (scrollProgress) scrollProgress.style.width = scrollPercent + '%';
 
     // Show/hide back to top button
-    if (scrollTop > 300) {
-        backToTop.style.display = 'block';
-    } else {
-        backToTop.style.display = 'none';
+    if (backToTop) {
+        if (scrollTop > 300) {
+            backToTop.style.display = 'flex';
+        } else {
+            backToTop.style.display = 'none';
+        }
     }
 });
 
 /* Back to top button */
-const backToTop = document.getElementById('back-to-top');
-backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-/* Chatbot functionality */
-const chatbot = document.getElementById('chatbot');
-const chatbotHeader = document.getElementById('chatbot-header');
-const chatbotClose = document.getElementById('chatbot-close');
-const chatbotMessages = document.getElementById('chatbot-messages');
-const chatbotInput = document.getElementById('chatbot-input');
-
-// Show chatbot when dark mode toggle is clicked (optional)
-// Or you can add a separate button to toggle chatbot visibility
-darkModeToggle.addEventListener('dblclick', () => {
-    if (chatbot.style.display === 'flex') {
-        chatbot.style.display = 'none';
-    } else {
-        chatbot.style.display = 'flex';
-        chatbotInput.focus();
-    }
-});
-
-// Close chatbot
-chatbotClose.addEventListener('click', () => {
-    chatbot.style.display = 'none';
-});
-
-// Simple chatbot responses
-const botResponses = {
-    "hello": "Hello! How can I assist you today?",
-    "hi": "Hi there! What can I do for you?",
-    "who are you": "I am your interactive robot assistant.",
-    "help": "Sure! You can ask me about the portfolio or projects.",
-    "projects": "I have several projects including a College Chatbot, IoT Watering System, and more.",
-    "default": "Sorry, I didn't understand that. Can you please rephrase?"
-};
-
-function addMessage(message, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', sender);
-    messageDiv.textContent = message;
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+if (backToTop) {
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
-
-chatbotInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && chatbotInput.value.trim() !== '') {
-        const userMessage = chatbotInput.value.trim();
-        addMessage(userMessage, 'user');
-        chatbotInput.value = '';
-
-        // Simple bot response logic
-        const lowerMessage = userMessage.toLowerCase();
-        let response = botResponses["default"];
-        for (const key in botResponses) {
-            if (lowerMessage.includes(key)) {
-                response = botResponses[key];
-                break;
-            }
-        }
-        setTimeout(() => {
-            addMessage(response, 'bot');
-        }, 500);
-    }
-});
