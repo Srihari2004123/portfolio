@@ -1,379 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SRI HARI S </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SRI HARI | AI & ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Liquid Background -->
-    <div class="liquid-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="blob blob-4"></div>
+
+  <!-- Canvas layers -->
+  <canvas id="scene3d" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100vw;height:100vh"></canvas>
+  <canvas id="particles" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100vw;height:100vh;opacity:0.6"></canvas>
+  <div class="noise-overlay"></div>
+
+  <!-- Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Navbar — Apple Liquid Glass -->
+  <nav>
+    <div class="nav-specular"></div>
+    <div class="container" style="display:flex;justify-content:center;align-items:center;position:relative;z-index:2;gap:2rem">
+      <a href="#" class="nav-logo" style="font-size:1.35rem;font-weight:800;font-family:var(--font-alt);color:var(--gold);text-shadow:0 0 20px var(--gold-glow)">SH</a>
+      <div style="display:flex;gap:0.15rem;align-items:center">
+        <div style="display:flex;gap:0.15rem;align-items:center" class="nav-links-desktop">
+          <a href="#about" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">About</a>
+          <a href="#education" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">Education</a>
+          <a href="#skills" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">Skills</a>
+          <a href="#projects" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">Work</a>
+          <a href="#experience" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">Experience</a>
+          <a href="#contact" class="nav-link" style="font-size:0.78rem;font-weight:500;padding:0.4rem 0.75rem;border-radius:30px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.3px;transition:all 0.3s;display:inline-block">Contact</a>
+        </div>
+        <button id="navToggle" style="display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:4px" class="nav-toggle-btn" aria-label="Toggle menu">
+          <span style="display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;transition:all 0.3s"></span>
+          <span style="display:block;width:22px;height:2px;background:var(--text-muted);border-radius:2px;transition:all 0.3s"></span>
+          <span style="display:block;width:22px;height:2px;background:var(--text-muted);border-radius:2px;transition:all 0.3s"></span>
+        </button>
+      </div>
     </div>
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">SRI HARI S</a>
-            <ul class="nav-links">
-                <li><a href="#Objective">Objective</a></li>
-                <li><a href="#Education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#internship">Internship</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#contact">Contact Me</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="container">
-            <div class="hero-flex-container">
-                <div class="profile-container">
-                    <div class="profile-frame"></div>
-                    <img src="assets/images/pic.jpg" alt="SRI HARI S" class="profile-img" />
-                </div>
-                <div class="hero-text-container">
-                    <h1>SRI HARI S</h1>
-                    <p>Artificial Intelligence & Machine Learning Engineer</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/sri-hari-s-6b3987347?utm_source=share&utm_campaign=share_via&utm_content" class="btn btn-linkedin">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="https://github.com/Srihari2004123" class="btn btn-github">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://gitlab.com/your-gitlab-username" class="btn btn-gitlab">
-                            <i class="fab fa-gitlab"></i> GitLab
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="Objective" class="section">
-        <div class="container">
-            <h2>Career Objective</h2>
-            <p>Highly motivated in Artificial Intelligence and Machine Learning. Passionate about leveraging technology to solve real-world problems Actively seeking opportunities to enhance my abilities and further develop technical skills in a professional environment.</p>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="Education" class="section">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <h3>Bachelor of Engineering: AI & ML</h3>
-                    <p class="institution">GM institute of technology Davangere, India</p>
-                    <p class="duration">2022 - 2026</p>
-                </div>
-                <div class="education-card">
-                    <h3>Pre-University Course (PUC)</h3>
-                    <p class="institution">Sir MV PU College, Davangere, India</p>
-                    <p class="duration">2020 - 2022</p>
-                </div>
-                <div class="education-card">
-                    <h3>Secondary School Leaving Certificate (SSLC)</h3>
-                    <p class="institution">Rastriya Academy School, Hiriyur, Chitradurga, India</p>
-                    <p class="duration">2019 - 2020</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-light">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Computer Languages</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="devicon-c-plain colored"></i> C</span>
-                        <span class="skill-badge"><i class="devicon-cplusplus-plain colored"></i> C++</span>
-                        <span class="skill-badge"><i class="devicon-java-plain colored"></i> Java (basic)</span>
-                        <span class="skill-badge"><img src="assets/icons/python.svg" alt="Python" class="skill-icon" /> Python (Basic)</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Web Development</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="devicon-html5-plain colored"></i> HTML</span>
-                        <span class="skill-badge"><i class="devicon-css3-plain colored"></i> CSS</span>
-                        <span class="skill-badge"><i class="devicon-php-plain colored"></i> PHP (Basic)</span>
-                        <span class="skill-badge"><i class="devicon-react-original colored"></i> MERN Stack</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Database Tools</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-                        <span class="skill-badge"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Version Control</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="devicon-gitlab-plain colored"></i> GitLab</span>
-                        <span class="skill-badge"><i class="devicon-github-original colored"></i> GitHub</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Other Tools</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="devicon-unity-original colored"></i> Unity Hub</span>
-                        <span class="skill-badge"><img src="assets/icons/msoffice.svg" alt="MS Office" class="skill-icon" /> MS Office(Excel,Word)</span>
-                        <span class="skill-badge"><img src="assets/icons/tableau.svg" alt="Tableau" class="skill-icon" /> Tableau</span>
-                        <span class="skill-badge"><img src="assets/icons/powerbi.svg" alt="Power BI" class="skill-icon" /> Power BI</span>
-                        <span class="skill-badge"><img src="assets/icons/figma.svg" alt="Figma" class="skill-icon" /> Figma</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Cloud</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><img src="assets/icons/googlecloud.svg" alt="Google Cloud Platform" class="skill-icon" /> Google Cloud Platform</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Air Quality Index Prediction</h3>
-                    <p>Finding air quality index prediction using machine learning techniques.</p>
-                    <button class="btn-explore" data-modal="air-quality-index">Explore More</button>
-                </div>
-                <div class="project-card">
-                    <h3>Smart Electric Component Detector Application</h3>
-                    <p>Mobile app using AI to detect electronic components for industrial use.</p>
-                    <button class="btn-explore" data-modal="electric-component-detector">Explore More</button>
-                </div>
-                <div class="project-card">
-                    <h3>Vehicle Insurance System</h3>
-                    <p>Creating vehicle insurance and payment system with frontend development.</p>
-                    <button class="btn-explore" data-modal="vehicle-insurance-system">Explore More</button>
-                </div>
-                <div class="project-card">
-                    <h3>Automated Question Paper Generator</h3>
-                    <p>Flutter app for AI-generated MCQs with automated result processing and PDF reports.</p>
-                    <button class="btn-explore" data-modal="question-paper-generator">Explore More</button>
-                </div>
-                <div class="project-card">
-                    <h3>Portfolio</h3>
-                    <p>A simple portfolio created using HTML, CSS, and JavaScript.</p>
-                    <button class="btn-explore" data-modal="portfolio-project">Explore More</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modals for Projects -->
-    <div id="modal-container">
-        <div id="air-quality-index" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Air Quality Index Prediction</h2>
-                <p><strong>Project Type:</strong> Internship during Undergraduate (UG) - B.E.</p>
-                <p><strong>Duration:</strong> 02-Mar-2025 to 01-Apr-2025</p>
-                <p><strong>Team Size:</strong> 1</p>
-                <p><strong>Description:</strong> Finding air quality index prediction using machine learning.</p>
-                <p><strong>Tools & Tech:</strong> Python, ML, SQL, PHP, Firebase</p>
-                <p><strong>Role:</strong> Complete work</p>
-            </div>
-        </div>
-        <div id="portfolio-project" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Portfolio</h2>
-                <p>A simple portfolio created using HTML, CSS, and JavaScript.</p>
-            </div>
-        </div>
-        <div id="electric-component-detector" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Smart Electric Component Detector Application</h2>
-                <p><strong>Project Type:</strong> Academic during Undergraduate (UG) - B.E.</p>
-                <p><strong>Duration:</strong> 04-Nov-2024 to 05-Nov-2025</p>
-                <p><strong>Team Size:</strong> 4</p>
-                <p><strong>Description:</strong> Developed a mobile app using Flutter, Dart, and TensorFlow Lite model that uses AI to detect electronic components such as resistors, capacitors, and more. Designed for industrial use to reduce misidentification and improve efficiency in component handling.</p>
-                <p><strong>Tools & Tech:</strong> Flutter, Dart, TensorFlow Lite, Android Studio</p>
-                <p><strong>Role:</strong> Coding and presenting</p>
-            </div>
-        </div>
-        <div id="vehicle-insurance-system" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Vehicle Insurance System</h2>
-                <p><strong>Project Type:</strong> Academic during Undergraduate (UG) - B.E.</p>
-                <p><strong>Duration:</strong> 28-Feb-2023 to 29-Apr-2025</p>
-                <p><strong>Team Size:</strong> 4</p>
-                <p><strong>Description:</strong> Creating vehicle insurance and payment system with frontend development.</p>
-                <p><strong>Tools & Tech:</strong> JavaScript, CSS, HTML, PHPMyAdmin</p>
-                <p><strong>Role:</strong> Frontend</p>
-            </div>
-        </div>
-        <div id="question-paper-generator" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Automated Question Paper Generator</h2>
-                <p><strong>Project Type:</strong> Academic during Undergraduate (UG) - B.E.</p>
-                <p><strong>Duration:</strong> 04-Apr-2025 to 05-Apr-2025</p>
-                <p><strong>Team Size:</strong> 4</p>
-                <p><strong>Description:</strong> Developed a Flutter-based application for real-time AI-generated multiple-choice questions (MCQs) based on teacher-assigned topics. Integrated automated result processing, providing PDF reports with correct and incorrect answers. Enhanced user experience with an intuitive interface for seamless learning and assessment. Optimized AI-powered question generation for adaptive student learning.</p>
-                <p><strong>Tools & Tech:</strong> Flutter, Kotlin, Dart, Firebase, ML, Android Studio, CSS</p>
-                <p><strong>Role:</strong> Frontend</p>
-            </div>
-        </div>
+    <div id="navMenu" style="display:none;position:absolute;top:100%;left:1rem;right:1rem;background:rgba(7,7,13,0.95);border:1px solid var(--border);border-radius:16px;padding:0.5rem;margin-top:8px;backdrop-filter:blur(40px)">
+      <a href="#about" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">About</a>
+      <a href="#education" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">Education</a>
+      <a href="#skills" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">Skills</a>
+      <a href="#projects" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">Work</a>
+      <a href="#experience" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">Experience</a>
+      <a href="#contact" class="nav-link" style="display:block;padding:0.6rem 1rem;color:var(--text-muted);font-size:0.85rem;border-radius:8px">Contact</a>
     </div>
+  </nav>
 
-    <!-- Internship Section -->
-    <section id="internship" class="section bg-light">
-        <div class="container">
-            <h2>Internship Experience</h2>
-            <div class="internship-grid">
-                <div class="internship-card">
-                    <h3>AI and Data Analytics Internship – Virtual</h3>
-                    <p>Feb 2025 – Mar 2025</p>
-                    <p>Completed 4-week virtual internship focused on Artificial Intelligence and Data Analytics with emphasis on Green Skills.</p>
-                    <p>Organized by AICTE, Shell India Markets Private Limited, and Edunet Foundation under the Skills4Future program.</p>
-                </div>
-            </div>
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg-1"></div>
+    <div class="hero-bg-2"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-tag"><span class="hero-dot"></span> AI & ML Engineer</div>
+        <div class="hero-title">
+          <span>SRI</span>
+          <span>HARI</span>
+          <span>S</span>
         </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section id="achievements" class="section">
-        <div class="container">
-            <h2>Achievements & Activities</h2>
-            <div class="achievements-grid">
-                <div class="achievement-card">
-                    <h3>Certification Course Completion</h3>
-                    <p>Successfully completed a certification course demonstrating advanced skills and knowledge.</p>
-                    <div class="achievement-details">
-                        <img src="assets/images/cc.png" alt="Certification Course Completion" />
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <h3>MongoDB Training</h3>
-                    <p>Completed comprehensive training on MongoDB, enhancing database management skills.</p>
-                    <div class="achievement-details">
-                        <img src="assets/images/mongoDB.png" alt="MongoDB Training" />
-                    </div>
-                </div>
-                <div class="achievement-card">
-                    <h3>Paticipation in Sharkathon</h3>
-                    <p>Participated in an AI and Technology Sharkathon to deepen understanding of emerging technologies.</p>
-                    <div class="achievement-details">
-                        <img src="assets/images/AIT.jpg" alt="AI and Technology Workshop" />
-                    </div>
-                </div>
-            </div>
+        <p class="hero-sub">
+          AI & ML Engineering Graduate · Building intelligent systems
+        </p>
+        <div class="hero-actions">
+          <a href="https://www.linkedin.com/in/sri-hari-s-6b3987349" target="_blank" class="btn"><span class="btn-inner"><i class="fab fa-linkedin-in"></i> LinkedIn</span></a>
+          <a href="https://github.com/Srihari2004123" target="_blank" class="btn btn-outline"><span class="btn-inner"><i class="fab fa-github"></i> GitHub</span></a>
         </div>
-    </section>
-
-    <!-- Contact Me Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container contact-container">
-            <div class="contact-form-container">
-                <h2>Contact Me</h2>
-                <form method="POST" id="form" class="contact-form">
-                    <input type="hidden" name="access_key" value="e9552f95-2f82-4cfc-9482-4d85f44a1c5d" />
-                    <input type="text" name="name" placeholder="Your Name" required class="form-input" />
-                    <input type="email" name="email" placeholder="Your Email" required class="form-input" />
-                    <textarea name="message" placeholder="Your Message" rows="5" required class="form-textarea"></textarea>
-                    <button type="submit" class="btn-submit">Submit →</button>
-                    <div id="result" class="form-result"></div>
-                </form>
-            </div>
-            <div class="contact-animation-side">
-                <div class="animated-structure">
-                    <div class="circle circle1"></div>
-                    <div class="circle circle2"></div>
-                    <div class="circle circle3"></div>
-                    <div class="line line1"></div>
-                    <div class="line line2"></div>
-                    <div class="line line3"></div>
-                </div>
-            </div>
-            <div class="contact-decorative-shapes">
-                <!-- Decorative shapes removed as per user request -->
-            </div>
+      </div>
+      <div style="display:flex;justify-content:center;align-items:center;perspective:1200px">
+        <div class="avatar-3d">
+          <div class="avatar-glow-ring"></div>
+          <div class="avatar-border-ring"></div>
+          <div class="avatar-frame">
+            <img src="assets/images/newpfp.jpeg" alt="Sri Hari S" />
+            <div class="avatar-overlay"></div>
+          </div>
+          <div class="avatar-badge"><span class="avatar-badge-dot"></span>Available</div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>SCROLL</span>
+      <i class="fas fa-chevron-down scroll-arrow"></i>
+    </div>
+  </section>
 
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress"></div>
+  <!-- ===== ABOUT ===== -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal-3d">
+        <span class="section-tag">About</span>
+        <h2 class="section-title">Turning data into <span class="gradient-text">intelligence</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="about-card reveal-scale" style="transition-delay:0.1s">
+        <div class="about-card-bg"></div>
+        <div class="about-content">
+          <p class="about-text">AI & ML Engineering graduate with a proven track record in developing intelligent systems, including the winning project for SIH 2025 — Kisan Bandhu.</p>
+          <p class="about-text">Skilled in Machine Learning, Deep Learning, Full Stack Web Development and Data Analysis. Passionate about leveraging technology to solve real-world problems across agriculture, healthcare and e-commerce.</p>
+          <div class="about-stats">
+            <div class="about-stat"><span class="about-stat-num">6+</span><span class="about-stat-label">Projects</span></div>
+            <div class="about-stat"><span class="about-stat-num">3+</span><span class="about-stat-label">Hackathons</span></div>
+            <div class="about-stat"><span class="about-stat-num">8+</span><span class="about-stat-label">Skills</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Dark Mode Toggle -->
-    <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+  <!-- ===== EDUCATION ===== -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-head reveal-blur">
+        <span class="section-tag">Education</span>
+        <h2 class="section-title">Academic <span class="gradient-text">journey</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div style="position:relative;max-width:600px;margin:0 auto">
+        <div class="edu-line"></div>
+        <div class="edu-item reveal-left" style="transition-delay:0s">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-card-glow"></div>
+            <i class="fas fa-graduation-cap edu-icon"></i>
+            <h3 class="edu-degree">B.E. AI & ML</h3>
+            <p class="edu-school">GM Institute of Technology, Davangere</p>
+            <p class="edu-meta">2022 — 2026 · CGPA: 8.6</p>
+            <div class="edu-bar"><div class="edu-bar-fill" data-progress="86"></div></div>
+          </div>
+        </div>
+        <div class="edu-item reveal-left" style="transition-delay:0.15s">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-card-glow"></div>
+            <i class="fas fa-school edu-icon"></i>
+            <h3 class="edu-degree">Pre-University (PUC)</h3>
+            <p class="edu-school">Sir MV PU College, Davangere</p>
+            <p class="edu-meta">2020 — 2022 · 80.5%</p>
+            <div class="edu-bar"><div class="edu-bar-fill" data-progress="80"></div></div>
+          </div>
+        </div>
+        <div class="edu-item reveal-left" style="transition-delay:0.3s">
+          <div class="edu-dot"></div>
+          <div class="edu-card">
+            <div class="edu-card-glow"></div>
+            <i class="fas fa-book-open edu-icon"></i>
+            <h3 class="edu-degree">SSLC (10th)</h3>
+            <p class="edu-school">Rastriya Academy school Hiriyur</p>
+            <p class="edu-meta">2019 — 2020 · 88.96%</p>
+            <div class="edu-bar"><div class="edu-bar-fill" data-progress="89"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Chatbot Widget -->
-    <!-- Removed chatbot widget as per user request -->
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-head reveal-3d">
+        <span class="section-tag">Skills</span>
+        <h2 class="section-title">Tech <span class="gradient-text">arsenal</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="skills-grid stagger-3d">
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="devicon-java-plain"></i> Languages</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-java-plain"></i> Java</span>
+            <span class="skill-chip"><i class="devicon-python-plain"></i> Python</span>
+            <span class="skill-chip"><i class="devicon-c-plain"></i> C</span>
+            <span class="skill-chip"><i class="devicon-cplusplus-plain"></i> C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="devicon-react-original"></i> Web</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-html5-plain"></i> HTML</span>
+            <span class="skill-chip"><i class="devicon-css3-plain"></i> CSS</span>
+            <span class="skill-chip"><i class="devicon-react-original"></i> React</span>
+            <span class="skill-chip"><i class="devicon-java-plain"></i> Spring Boot</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="fas fa-chart-line"></i> Data</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-python-plain"></i> Pandas</span>
+            <span class="skill-chip"><i class="devicon-python-plain"></i> NumPy</span>
+            <span class="skill-chip"><i class="fas fa-chart-bar"></i> Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="fas fa-database"></i> DB</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-mysql-plain"></i> MySQL</span>
+            <span class="skill-chip"><i class="devicon-mongodb-plain"></i> MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="fas fa-tools"></i> Tools</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-git-plain"></i> Git</span>
+            <span class="skill-chip"><i class="devicon-vscode-plain"></i> VS Code</span>
+            <span class="skill-chip"><i class="devicon-eclipse-plain"></i> Eclipse</span>
+            <span class="skill-chip"><i class="devicon-jupyter-plain"></i> Jupyter</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3 class="skill-group-header"><i class="fas fa-cloud"></i> Cloud</h3>
+          <div class="skill-chips">
+            <span class="skill-chip"><i class="devicon-googlecloud-plain"></i> GCP</span>
+            <span class="skill-chip"><i class="devicon-github-original"></i> GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to Top">↑</button>
+  <!-- ===== PROJECTS ===== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head reveal-scale">
+        <span class="section-tag">Work</span>
+        <h2 class="section-title">Featured <span class="gradient-text">projects</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="project-list">
+        <div class="project-card tilt-3d" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
+          <div class="project-card-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)"></div>
+          <div class="project-card-overlay">
+            <span class="project-tag">SIH 2025 Winner</span>
+            <h3 class="project-title">Kisan Bandhu</h3>
+            <p class="project-desc">Multi-language farmer assistance platform with AI chatbot, crop disease detection & community support.</p>
+            <div class="project-tech"><span>ML</span><span>React</span><span>Flask</span></div>
+          </div>
+          <div class="project-shine"></div>
+        </div>
+        <div class="project-card" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69,#6930c3)">
+          <div class="project-card-bg" style="background:linear-gradient(135deg,#1a1a2e,#2d1b69,#6930c3)"></div>
+          <div class="project-card-overlay">
+            <span class="project-tag">Full Stack</span>
+            <h3 class="project-title">ClickNBuy</h3>
+            <p class="project-desc">Full-stack e-commerce app with secure auth, shopping cart, product catalog & order tracking.</p>
+            <div class="project-tech"><span>Spring Boot</span><span>React</span><span>MySQL</span></div>
+          </div>
+          <div class="project-shine"></div>
+        </div>
+        <div class="project-card" style="background:linear-gradient(135deg,#1a1a2e,#3d0c11,#7b2d26)">
+          <div class="project-card-bg" style="background:linear-gradient(135deg,#1a1a2e,#3d0c11,#7b2d26)"></div>
+          <div class="project-card-overlay">
+            <span class="project-tag">AI / ML</span>
+            <h3 class="project-title">AI Cattle Health</h3>
+            <p class="project-desc">AI-powered system for early detection of cattle health issues using ML & Flask-based interface.</p>
+            <div class="project-tech"><span>Python</span><span>Flask</span><span>ML</span></div>
+          </div>
+          <div class="project-shine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        const form = document.getElementById('form');
-        const result = document.getElementById('result');
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-head reveal-3d">
+        <span class="section-tag">Experience</span>
+        <h2 class="section-title">Industry <span class="gradient-text">exposure</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="exp-list">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div style="padding-left:0.5rem"><h3 class="exp-role">Java Full Stack Intern</h3><p class="exp-company">Q Spiders · Test Yantra</p></div>
+            <span class="exp-period">Jan 2026 — May 2026</span>
+          </div>
+          <ul class="exp-items">
+            <li class="exp-item">Built end-to-end web applications using Java, Spring Boot, and modern frontend technologies.</li>
+            <li class="exp-item">Developed RESTful APIs and integrated with React-based UIs.</li>
+            <li class="exp-item">Collaborated in an Agile team environment with code reviews and sprint planning.</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div style="padding-left:0.5rem"><h3 class="exp-role">AI & Data Analytics Intern</h3><p class="exp-company">AICTE · Shell India · Edunet</p></div>
+            <span class="exp-period">Feb 2025 — Mar 2025</span>
+          </div>
+          <ul class="exp-items">
+            <li class="exp-item">4-week virtual internship focused on AI and Data Analytics with Green Skills under Skills4Future.</li>
+            <li class="exp-item">Worked on data preprocessing and exploratory data analysis for environmental sustainability projects.</li>
+            <li class="exp-item">Presented findings using data visualization techniques to stakeholders.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
+  <!-- ===== ACHIEVEMENTS ===== -->
+  <section class="section" id="achievements">
+    <div class="container">
+      <div class="section-head reveal-blur">
+        <span class="section-tag">Achievements</span>
+        <h2 class="section-title">Milestones & <span class="gradient-text">recognition</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="achieve-grid">
+        <div class="achieve-card"><i class="fas fa-trophy achieve-icon"></i><h3 class="achieve-title">SIH 2025 Winner</h3><p class="achieve-desc">Smart India Hackathon 2025 winning project — Kisan Bandhu</p></div>
+        <div class="achieve-card"><i class="fas fa-code-branch achieve-icon"></i><h3 class="achieve-title">National Hackathons</h3><p class="achieve-desc">Participated in 5+ national-level competitive coding events</p></div>
+        <div class="achieve-card"><i class="fas fa-certificate achieve-icon"></i><h3 class="achieve-title">NPTEL Certified</h3><p class="achieve-desc">Cloud Computing & other NPTEL certifications completed</p></div>
+        <div class="achieve-card"><i class="fas fa-laptop-code achieve-icon"></i><h3 class="achieve-title">AICTE Intern</h3><p class="achieve-desc">Skills4Future AI & Data Analytics internship completed</p></div>
+      </div>
+    </div>
+  </section>
 
-            result.innerHTML = "Please wait...";
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head reveal-scale">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Let's <span class="gradient-text">connect</span></h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="reveal-3d" style="max-width:560px;margin:0 auto;transition-delay:0.1s">
+        <p style="font-size:0.92rem;color:var(--text-muted);margin-bottom:2rem;text-align:center">I'm currently open to new opportunities. Whether you have a project idea or just want to say hi — drop a message below.</p>
 
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    result.innerHTML = json.message;
-                } else {
-                    console.log(response);
-                    result.innerHTML = json.message;
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                result.innerHTML = "Something went wrong!";
-            })
-            .then(function() {
-                form.reset();
-                setTimeout(() => {
-                    result.style.display = "none";
-                }, 3000);
-            });
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
-    <script src="script.js"></script>
+        <form id="contactForm" style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+            <div style="display:flex;flex-direction:column;gap:0.35rem">
+              <label for="formName" style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Name</label>
+              <input type="text" id="formName" placeholder="Your name" required class="form-input" />
+            </div>
+            <div style="display:flex;flex-direction:column;gap:0.35rem">
+              <label for="formEmail" style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Email</label>
+              <input type="email" id="formEmail" placeholder="your@email.com" required class="form-input" />
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.35rem">
+            <label for="formMessage" style="font-size:0.75rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px">Message</label>
+            <textarea id="formMessage" rows="4" placeholder="Your message..." required class="form-input" style="resize:vertical"></textarea>
+          </div>
+          <button type="submit" class="btn" style="align-self:flex-start">
+            <span class="btn-inner"><i class="fas fa-paper-plane"></i> Send Message</span>
+          </button>
+        </form>
+        <div id="formStatus" style="font-size:0.82rem;color:var(--gold);text-align:center;display:none"></div>
+
+        <div style="display:flex;justify-content:center;gap:0.75rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+          <a href="https://www.linkedin.com/in/sri-hari-s-6b3987349" target="_blank" class="contact-social"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Srihari2004123" target="_blank" class="contact-social"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer><p>&copy; 2026 Srihari S. Crafted with <span>passion</span>.</p></footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content" id="modalBody"></div>
+  </div>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+  <script src="script.js"></script>
 </body>
 </html>
